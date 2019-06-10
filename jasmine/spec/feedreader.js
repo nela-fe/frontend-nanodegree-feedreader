@@ -25,6 +25,7 @@ $(function() {
             expect(allFeeds).toBeDefined();
             expect(allFeeds.length).not.toBe(0);
         });
+    });
 
 
         /* TODO: Write a test that loops through each feed
@@ -32,15 +33,39 @@ $(function() {
          * and that the URL is not empty.
          */
 
+    describe('The feed', function(){
+        it('has a URL', function(){
+            allFeeds.forEach(function(feed) {
+                expect(feed.url).toBeDefined();
+                expect(feed.url.length).not.toBe(0);
+                console.log(feed.url);
+            });
+        });
 
         /* TODO: Write a test that loops through each feed
          * in the allFeeds object and ensures it has a name defined
          * and that the name is not empty.
          */
+
+        it('has a name', function(){
+            allFeeds.forEach(function(feed) {
+                expect(feed.name).toBeDefined();
+                expect(feed.name.length).not.toBe(0);
+                console.log(feed.name);
+            });
+        });
     });
 
 
+
+    // });  // ?!
+
+
     /* TODO: Write a new test suite named "The menu" */
+
+    describe('The menu', function() {
+        const pageBody = document.querySelector('body');
+
 
         /* TODO: Write a test that ensures the menu element is
          * hidden by default. You'll have to analyze the HTML and
@@ -48,11 +73,44 @@ $(function() {
          * hiding/showing of the menu element.
          */
 
+        it('is hidden by default', function() {
+            expect(pageBody.classList.contains('menu-hidden')).toBe(true);
+        });
+
+
          /* TODO: Write a test that ensures the menu changes
           * visibility when the menu icon is clicked. This test
           * should have two expectations: does the menu display when
           * clicked and does it hide when clicked again.
           */
+
+
+          it('changes visibility when clicked', function() {
+              let menuVisible = false;
+
+
+            let menuIcon = document.querySelector('.menu-icon-link');
+            console.log(menuIcon);
+
+            // create event?
+
+            // menuIcon.addEventListener('click', function() {
+            //     console.log('you clicked the menu');
+
+                // body.classList.contains('menuHidden');
+
+            });
+
+
+
+
+
+          });
+
+
+
+    });
+
 
     /* TODO: Write a new test suite named "Initial Entries" */
 
