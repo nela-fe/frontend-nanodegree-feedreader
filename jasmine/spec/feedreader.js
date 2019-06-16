@@ -103,18 +103,20 @@ $(function() {
          */
 
 
-// QUESTION: won't there always ne a .entry element, as it's defined in the html?
+// QUESTION: won't there always ne a .entry element, as it is defined in the html..?
 
     describe('Initial Entries', function() {
-
         beforeEach(function(done) {
-            loadFeed(0, done);
+            loadFeed(0, function() {  // like this?
+                done()
+            });
         });
 
         it('has at least one entry', function() {
             let feedContainer = document.querySelector('div.feed');
             expect(feedContainer.contains(document.querySelector('article.entry'))).toBe(true);
         });
+    });
 
 
 
@@ -128,25 +130,24 @@ $(function() {
 
 
         describe('New Feed Selection', function() {
+            let oldFeed;
+            let newFeed;
+
+            beforeEach(function(done) {
+                loadFeed(0, function(){
+                    oldFeed = document.querySelector('div.feed').innerHTML;
+                    loadFeed(1, function(){
+                        newFeed = document.querySelector('div.feed').innerHTML;
+                        done();
+                    });
+                });
+            });
+
+
             it('changes content when new feed is loaded', function() {
-
-               /*
-               let a = Lade Feed 0
-
-               let b = load Feed [2]
-
-
-
-                expect(a ungleich b).toBe(true);
-
-                */
-
+                expect(oldFeed).not.toBe(newFeed);
+            });
 
         });
-
-        });
-
-
-    });
 
 }());
